@@ -4,31 +4,31 @@ libs:
 
 ---
 
-# DOM tree
+# Árvore DOM
 
-The backbone of an HTML document is tags.
+A espinha dorsal de um documento HTML são as tags.
 
-According to the Document Object Model (DOM), every HTML tag is an object. Nested tags are  "children" of the enclosing one. The text inside a tag is an object as well.
+De acordo com o Document Object Model (DOM), cada tag HTML é um objeto. As tags aninhadas são “filhas” da que a contém. O texto dentro de uma tag também é um objeto.
 
-All these objects are accessible using JavaScript, and we can use them to modify the page.
+Todos esses objetos são acessíveis usando JavaScript, e podemos usá-los para modificar a página.
 
-For example, `document.body` is the object representing the `<body>` tag.
+Por exemplo, `document.body` é o objeto que representa a tag `<body>`.
 
-Running this code will make the `<body>` red for 3 seconds:
+Executar este código deixará `<body>` vermelho por 3 segundos:
 
 ```js run
-document.body.style.background = 'red'; // make the background red
+document.body.style.background = 'red'; // torna o fundo vermelho
 
-setTimeout(() => document.body.style.background = '', 3000); // return back
+setTimeout(() => document.body.style.background = '', 3000); // retornar ao anterior
 ```
 
-Here we used `style.background` to change the background color of `document.body`, but there are many other properties, such as:
+Aqui usamos `style.background` para alterar a cor de fundo de `document.body`, mas existem muitas outras propriedades, como:
 
-- `innerHTML` -- HTML contents of the node.
-- `offsetWidth` -- the node width (in pixels)
-- ...and so on.
+- `innerHTML` -- conteúdo HTML do nó.
+- `offsetWidth` -- a largura do nó (em pixels)
+- ...e assim por diante.
 
-Soon we'll learn more ways to manipulate the DOM, but first we need to know about its structure.
+Em breve aprenderemos mais maneiras de manipular o DOM, mas primeiro precisamos saber sobre sua estrutura.
 
 ## An example of the DOM
 
