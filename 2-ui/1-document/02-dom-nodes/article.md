@@ -4,36 +4,36 @@ libs:
 
 ---
 
-# DOM tree
+# Árvore DOM
 
-The backbone of an HTML document is tags.
+A espinha dorsal de um documento HTML são as tags.
 
-According to the Document Object Model (DOM), every HTML tag is an object. Nested tags are  "children" of the enclosing one. The text inside a tag is an object as well.
+De acordo com o Document Object Model (DOM), cada tag HTML é um objeto. As tags aninhadas são “filhas” da que a contém. O texto dentro de uma tag também é um objeto.
 
-All these objects are accessible using JavaScript, and we can use them to modify the page.
+Todos esses objetos são acessíveis usando JavaScript, e podemos usá-los para modificar a página.
 
-For example, `document.body` is the object representing the `<body>` tag.
+Por exemplo, `document.body` é o objeto que representa a tag `<body>`.
 
-Running this code will make the `<body>` red for 3 seconds:
+Executar este código deixará `<body>` vermelho por 3 segundos:
 
 ```js run
-document.body.style.background = 'red'; // make the background red
+document.body.style.background = 'red'; // torna o fundo vermelho
 
-setTimeout(() => document.body.style.background = '', 3000); // return back
+setTimeout(() => document.body.style.background = '', 3000); // retornar ao anterior
 ```
 
-Here we used `style.background` to change the background color of `document.body`, but there are many other properties, such as:
+Aqui usamos `style.background` para alterar a cor de fundo de `document.body`, mas existem muitas outras propriedades, como:
 
-- `innerHTML` -- HTML contents of the node.
-- `offsetWidth` -- the node width (in pixels)
-- ...and so on.
+- `innerHTML` -- conteúdo HTML do nó.
+- `offsetWidth` -- a largura do nó (em pixels)
+- ...e assim por diante.
 
-Soon we'll learn more ways to manipulate the DOM, but first we need to know about its structure.
+Em breve aprenderemos mais maneiras de manipular o DOM, mas primeiro precisamos saber sobre sua estrutura.
 
-## An example of the DOM
+## Um exemplo do DOM
 
-Let's start with the following simple document:
-
+Vamos começar com o seguinte documento simples:
+sgsdf
 ```html run no-beautify
 <!DOCTYPE HTML>
 <html>
@@ -46,7 +46,7 @@ Let's start with the following simple document:
 </html>
 ```
 
-The DOM represents HTML as a tree structure of tags. Here's how it looks:
+O DOM representa o HTML como uma estrutura de árvore de tags. É assim que ele se parece:
 
 <div class="domtree"></div>
 
@@ -57,31 +57,31 @@ drawHtmlTree(node1, 'div.domtree', 690, 320);
 </script>
 
 ```online
-On the picture above, you can click on element nodes and their children will open/collapse.
+Na imagem acima, você pode clicar nos nós dos elementos e seus filhos irão abrir/recolher.
 ```
 
-Every tree node is an object.
+Cada nó da árvore é um objeto.
 
-Tags are *element nodes* (or just elements) and form the tree structure: `<html>` is at the root, then `<head>` and `<body>` are its children, etc.
+Tags são *nós de elemento* (ou apenas elementos) e formam a estrutura da árvore: `<html>` está na raiz, então `<head>` e `<body>` são seus filhos, etc.
 
-The text inside elements forms *text nodes*, labelled as `#text`. A text node contains only a string. It may not have children and is always a leaf of the tree.
+O texto dentro dos elementos forma *nós de texto*, rotulados como `#text`. Um nó de texto contém apenas uma string. Ele pode não ter filhos e é sempre uma folha da árvore.
 
-For instance, the `<title>` tag has the text `"About elk"`.
+Por exemplo, a tag `<title>` tem o texto `"About elk"`.
 
-Please note the special characters in text nodes:
+Observe os caracteres especiais nos nós de texto:
 
-- a newline: `↵` (in JavaScript known as `\n`)
-- a space: `␣`
+- uma nova linha: `↵` (conhecido em JavaScript como `\n`)
+- um espaço: `␣`
 
-Spaces and newlines are totally valid characters, like letters and digits. They form text nodes and become a part of the DOM. So, for instance, in the example above the `<head>` tag contains some spaces before `<title>`, and that text becomes a `#text` node (it contains a newline and some spaces only).
+Espaços e novas linhas são caracteres totalmente válidos, como letras e dígitos. Eles formam nós de texto e se tornam parte do DOM. Portanto, por exemplo, no exemplo acima, a tag `<head>` contém alguns espaços antes de `<title>`, e esse texto se torna um nó `#text` (ele contém uma nova linha e alguns espaços apenas).
 
-There are only two top-level exclusions:
-1. Spaces and newlines before `<head>` are ignored for historical reasons.
-2. If we put something after `</body>`, then that is automatically moved inside the `body`, at the end, as the HTML spec requires that all content must be inside `<body>`. So there can't be any spaces after `</body>`.
+Existem apenas duas exclusões de nível superior:
+1. Espaços e novas linhas antes de `<head>` são ignorados por motivos históricos.
+2. Se colocarmos algo depois de `</body>`, esse algo será automaticamente movido para dentro do `body`, no final, pois a especificação HTML exige que todo o conteúdo esteja dentro de `<body>`. Portanto, não pode haver espaços depois de `</body>`.
 
-In other cases everything's straightforward -- if there are spaces (just like any character) in the document, then they become text nodes in the DOM, and if we remove them, then there won't be any.
+Em outros casos, tudo é simples -- se houver espaços (como qualquer caractere) no documento, eles se tornam nós de texto no DOM e, se removê-los, não haverá mais nenhum.
 
-Here are no space-only text nodes:
+Aqui não há nós de texto apenas com espaço:
 
 ```html no-beautify
 <!DOCTYPE HTML>
@@ -96,16 +96,16 @@ let node2 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,
 drawHtmlTree(node2, 'div.domtree', 690, 210);
 </script>
 
-```smart header="Edge spaces and in-between empty text are usually hidden in tools"
-Browser tools (to be covered soon) that work with DOM usually do not show spaces at the start/end of the text and empty text nodes (line-breaks) between tags.
+```smart header="Os espaços nas bordas e o texto vazio intermediário geralmente estão ocultos nas ferramentas"
+Ferramentas de navegador (a serem abordadas em breve) que trabalham com DOM geralmente não mostram espaços no início/fim do texto e nós de texto vazios (quebras de linha) entre as tags.
 
-That's because they are mainly used to decorate HTML, and do not affect how it is shown (in most cases).
+Isso porque eles são usados principalmente para decorar HTML e não afetam a forma como ele é mostrado (na maioria dos casos).
 
-On further DOM pictures we'll sometimes omit them where they are irrelevant, to keep things short.
+Em outras imagens da DOM, às vezes as omitimos onde são irrelevantes, para manter as coisas curtas.
 ```
 
 
-## Autocorrection
+## Autocorreção
 
 If the browser encounters malformed HTML, it automatically corrects it when making the DOM.
 
