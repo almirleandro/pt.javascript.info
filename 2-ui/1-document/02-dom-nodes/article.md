@@ -107,11 +107,11 @@ Em outras imagens da DOM, às vezes as omitimos onde são irrelevantes, para man
 
 ## Autocorreção
 
-If the browser encounters malformed HTML, it automatically corrects it when making the DOM.
+Se o navegador encontrar HTML malformado, ele o corrigirá automaticamente ao criar o DOM.
 
-For instance, the top tag is always `<html>`. Even if it doesn't exist in the document, it will exist in the DOM, because the browser will create it. The same goes for `<body>`.
+Por exemplo, a tag superior é sempre `<html>`. Mesmo que não exista no documento, ela existirá no DOM, porque o navegador o criará. O mesmo vale para `<body>`.
 
-As an example, if the HTML file is the single word `"Hello"`, the browser will wrap it into `<html>` and `<body>`, and add the required `<head>`, and the DOM will be:
+Como exemplo, se o arquivo HTML é uma única palavra `"Hello"`, o navegador irá envolvê-lo em `<html>` e `<body>` e adicionar o `<head>` necessário, então o DOM será:
 
 
 <div class="domtree"></div>
@@ -122,9 +122,9 @@ let node3 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,
 drawHtmlTree(node3, 'div.domtree', 690, 150);
 </script>
 
-While generating the DOM, browsers automatically process errors in the document, close tags and so on.
+Ao gerar o DOM, os navegadores processam automaticamente os erros no documento, fecham as tags e assim por diante.
 
-A document with unclosed tags:
+Um documento com tags não fechadas:
 
 ```html no-beautify
 <p>Hello
@@ -133,7 +133,7 @@ A document with unclosed tags:
 <li>Dad
 ```
 
-...will become a normal DOM as the browser reads tags and restores the missing parts:
+...se tornará um DOM normal conforme o navegador lê as tags e restaura as partes ausentes:
 
 <div class="domtree"></div>
 
@@ -143,7 +143,7 @@ let node4 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,
 drawHtmlTree(node4, 'div.domtree', 690, 360);
 </script>
 
-````warn header="Tables always have `<tbody>`"
+````warn header="Tabelas sempre têm `<tbody>`"
 An interesting "special case" is tables. By DOM specification they must have `<tbody>` tag, but HTML text may omit it. Then the browser creates `<tbody>` in the DOM automatically.
 
 For the HTML:
